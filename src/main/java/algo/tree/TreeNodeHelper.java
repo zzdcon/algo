@@ -1,6 +1,6 @@
 package algo.tree;
 
-import algo.Tree;
+import algo.dataStructure.TreeNode;
 
 public class TreeNodeHelper {
     public static TreeNode constructNode(Integer[] input) {

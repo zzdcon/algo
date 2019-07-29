@@ -1,5 +1,7 @@
 package algo.tree;
 
+import algo.dataStructure.TreeNode;
+
 public class AVLBinaryTree {
 
     //给定一个二叉树，判断它是否是高度平衡的二叉树。
@@ -23,7 +25,7 @@ public class AVLBinaryTree {
         int[]  rightDepth = {0};
         if (isAVL(root.left, leftDepth) && isAVL(root.right, rightDepth)) {
             if (leftDepth[0]-rightDepth[0] < 2 && leftDepth[0] - rightDepth[0] > -2) {
-                depth[1] = Math.max(leftDepth[0], rightDepth[0]);
+                depth[0] = Math.max(leftDepth[0], rightDepth[0]);
                 return true;
             }
         }
