@@ -1,8 +1,8 @@
 package algo.tree;
-import algo.Tree;
+
+import algo.dataStructure.TreeNode;
 
 import java.util.*;
-import java.util.concurrent.LinkedBlockingDeque;
 
 import static algo.tree.TreeNodeHelper.constructNode;
 
