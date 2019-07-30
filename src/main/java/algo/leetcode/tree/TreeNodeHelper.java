@@ -1,4 +1,4 @@
-package algo.tree;
+package algo.leetcode.tree;
 
 import algo.dataStructure.TreeNode;
 

@@ -1,4 +1,4 @@
-package algo.linkedList;
+package algo.leetcode.linkedList;
 
 import algo.dataStructure.ListNode;
 

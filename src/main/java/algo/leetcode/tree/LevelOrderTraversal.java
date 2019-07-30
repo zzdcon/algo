@@ -1,10 +1,10 @@
-package algo.tree;
+package algo.leetcode.tree;
 
 import algo.dataStructure.TreeNode;
 
 import java.util.*;
 
-import static algo.tree.TreeNodeHelper.constructNode;
+import static algo.leetcode.tree.TreeNodeHelper.constructNode;
 
 /**
  * Definition for a binary tree node.
