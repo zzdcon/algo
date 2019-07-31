@@ -41,7 +41,7 @@ class PreOrderTraversal {
         return list;
     }
 
-    // 2. 迭代解法
+    // 2. 迭代解法： 通过队列实现，取队列尾部
     public List<Integer> preorderTraversal2(TreeNode root) {
         if (root == null) {
             return Collections.emptyList();
@@ -60,6 +60,27 @@ class PreOrderTraversal {
             // 再放左
             if (poll.left != null) {
                 linkedList.add(poll.left);
+            }
+        }
+        return list;
+    }
+
+    // 2. 迭代解法： 通过栈实现
+    public List<Integer> preorderTraversal3(TreeNode root) {
+        if (root == null) {
+            return Collections.emptyList();
+        }
+        List<Integer> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode pop = stack.pop();
+            list.add(pop.val);
+            if (pop.right != null) {
+                stack.push(pop.right);
+            }
+            if (pop.left != null) {
+                stack.push(pop.left);
             }
         }
         return list;
