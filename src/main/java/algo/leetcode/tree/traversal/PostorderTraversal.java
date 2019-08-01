@@ -16,10 +16,7 @@ package algo.leetcode.tree.traversal;//给定一个二叉树，返回它的 后�
 
 import algo.dataStructure.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-import java.util.concurrent.TransferQueue;
+import java.util.*;
 
 /**
  * Definition for a binary tree node.
@@ -42,26 +39,56 @@ class PostorderTraversal {
         return list;
     }
 
-    // 方法二： 通过栈
+    // 方法二： 前序遍历，通过双向链表实现，始终在头结点插入数据
     public List<Integer> postorderTraversal2(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
+        if (root == null) {
+            return Collections.emptyList();
+        }
+        LinkedList<Integer> list = new LinkedList<>();
         Stack<TreeNode> stack = new Stack<>();
-        TreeNode cur = root;
-        while (cur != null || !stack.empty()){
-            if (cur != null) {
-                stack.push(cur);
-                if (cur.right != null)
-                    stack.push(cur.right);
-                cur = cur.left;
-            } else {
-                cur = stack.pop();
-                if (cur.right != null) {
-                    cur = cur.right;
-                } else {
-                    list.add(cur.val);
-                }
+        stack.push(root);
+        while (!stack.empty()) {
+            TreeNode pop = stack.pop();
+            list.addFirst(pop.val);
+            if (pop.left != null) {
+                stack.push(pop.left);
+            }
+            if (pop.right != null) {
+                stack.push(pop.right);
             }
         }
         return list;
+    }
+
+    // 方法三 双栈模式
+    public List<Integer> postorderTraversal3(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        traverse(root, list);
+        return list;
+    }
+
+    public void traverse(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        Stack<Integer> stack2 = new Stack<>();
+
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode pop = stack.pop();
+            if (pop != null) {
+                stack2.push(pop.val);
+                stack.push(pop.left);
+                stack.push(pop.right);
+            }
+
+        }
+
+        while (!stack2.isEmpty()) {
+            list.add(stack2.pop());
+        }
     }
 }
