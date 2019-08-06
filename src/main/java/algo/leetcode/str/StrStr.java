@@ -65,7 +65,33 @@ class StrStr {
         return haystack.indexOf(needle);
     }
 
+    // 方法3： 遍历+回溯
+    public int strStr3(String haystack, String needle) {
+        if (needle == null || needle.length() == 0) {
+            return 0;
+        }
+
+        if (haystack == null || haystack.length() < needle.length()) {
+            return -1;
+        }
+
+        int i = 0;
+        int j = 0; // hello, ll
+        for (i=0; i<haystack.length(); i++) {
+            if (haystack.charAt(i) == needle.charAt(j)) {
+                j++;
+            } else if (j>0) {
+                i = i - j;
+                j = 0;
+                continue;
+            }
+            if (j == needle.length())
+                return i-j+1;
+        }
+        return -1;
+    }
+
         public static void main(String[] args) {
-        System.out.println(new StrStr().strStr("a", "a"));
+        System.out.println(new StrStr().strStr3("mississippi", "issip"));
     }
 }
