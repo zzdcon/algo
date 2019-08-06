@@ -30,7 +30,7 @@ class ReverseString {
             s[length-i-1] = temp;
         }
     }
-    // 方法二： 双指针，一个指针从前到后遍历，另一个指针从后到前遍历，知道相遇
+    // 方法二： 双指针，一个指针从前到后遍历，另一个指针从后到前遍历，直到相遇
     public void reverseString2(char[] s) {
         int length = s.length;
         if (length < 2) {
