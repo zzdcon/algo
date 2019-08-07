@@ -21,6 +21,7 @@ package algo.leetcode.linkedList;//给定一个链表，旋转链表，将链表
 //
 
 import algo.dataStructure.ListNode;
+import algo.tools.ListNodeBuilder;
 
 /**
  * Definition for singly-linked list.
@@ -31,6 +32,7 @@ import algo.dataStructure.ListNode;
  * }
  */
 class RotateRight {
+    // 方法一： 快慢指针， 当k>n时，k=k%n, 重新调用该函数
     public ListNode rotateRight(ListNode head, int k) {
         if (head == null || head.next == null) {
             return head;
@@ -45,7 +47,7 @@ class RotateRight {
             fast = fast.next;
             cnt++;
         }
-        if (cnt < k) {
+        if (cnt <= k) {
             k = k % cnt;
             return rotateRight(head, k);
         }
@@ -54,10 +56,38 @@ class RotateRight {
             fast = fast.next;
             slow = slow.next;
         }
-
+        //fast下一个节点连接到原链表头上，新的链表头为slow的下一个节点，断开slow和下一个节点，slow指向null
         fast.next = head;
         head = slow.next;
         slow.next = null;
         return head;
     }
+
+    // 方法二： 找到倒数第n-k-1个链表位置，该位置的下一个节点即为新节点，断开该位置
+    // 第一步，数出链表长度n, k=k%n, 将链表形成环
+    // 第二步，从head开始，数到n-k-1个节点，断开节点
+    public ListNode rotateRight2(ListNode head, int k) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode findEnd = head;
+        int cnt = 1;
+        while (findEnd.next != null) {
+           findEnd = findEnd.next;
+           cnt++;
+        }
+        k = k % cnt;
+        if (k == 0) {
+            return head;
+        }
+        findEnd.next = head;
+        for(int i=0; i<cnt-k-1; i++) {
+            head = head.next;
+        }
+        ListNode temp = head;
+        head = head.next;
+        temp.next = null;
+        return head;
+    }
+
 }
