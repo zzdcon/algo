@@ -5,38 +5,31 @@ import algo.dataStructure.ListNode;
 /**
  * Definition for singly-linked list.
  * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
+ * int val;
+ * ListNode next;
+ * ListNode(int x) { val = x; }
  * }
  */
 class ReverseBetween {
     public ListNode reverseBetween(ListNode head, int m, int n) {
-        ListNode node = head;
-        ListNode prev = null;
-        ListNode start = null;
-        ListNode end = null;
-        for (int i=1; i<=n; i++) {
-            if (i >= m) {
-                if (i == m) {
-                    start = node;
-                }
-
-                // 翻转
-                ListNode tempNext = node.next;
-                node.next = prev;
-                prev = node;
-                node = tempNext;
-                if (i == n) {
-                    end =
-                }
-            } else {
-                prev = node;
-                node = node.next;
-            }
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy;
+        for (int i = 0; i < m - 1; i++) {
+            pre = pre.next;
         }
-        return head;
-    }
 
-    private ListNode getReverse
+        head = pre;
+        ListNode cur = pre.next;
+        ListNode next;
+        ListNode temp;
+        for (int j = 0; j < n - m; j++) {
+            temp = head.next;
+            next = cur.next.next;
+            head.next = cur.next;
+            head.next.next = temp;
+            cur.next = next;
+        }
+        return dummy.next;
+    }
 }
