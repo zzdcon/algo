@@ -33,32 +33,54 @@ import java.util.Stack;
  * }
  */
 class ReverseKGroup {
+    // 方法一： 递归法
     public ListNode reverseKGroup(ListNode head, int k) {
-        if (head == null || k == 1) {
+        int n = k;
+        ListNode p = head;
+        while (p != null && n-- > 0) {
+            p = p.next;
+        }
+        if (n > 0) {
             return head;
         }
-        Stack<ListNode> stack = new Stack<>();
+
+        ListNode nextH = reverseKGroup(p, k);
+        while (k-- > 0) {
+            ListNode next = head.next;
+            head.next = nextH;
+            nextH = head;
+            head = next;
+        }
+        return nextH;
+    }
+
+    // 方法二： 遍历法，先遍历一遍判断k是否大于链表的长度，小于链表长度直接返回；否则每k个翻转
+    public ListNode reverseKGroup2(ListNode head, int k) {
+        int length = 0;
+        ListNode p = head;
+        while (p != null) {
+            p = p.next;
+            length++;
+        }
+
+        if (length<k) {
+            return head;
+        }
+
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode prev = dummy;
-        ListNode cur = dummy;
-        ListNode next;
-        while (cur.next != null) {
-            ListNode tempPrev = cur;
+        ListNode cur;
+        while (length >= k) {
+            cur = prev.next;
             for (int i=1; i<k; i++) {
-                cur = cur.next;
-                next = cur.next;
-                if (next != null) {
-                    ListNode tempNext = tempPrev.next;
-                    tempPrev.next = next;
-                    tempPrev.next.next = tempNext;
-                } else {
-                    // 剩余的节点数不够，不需要翻转，返回head；
-                    return dummy.next;
-                }
+                ListNode t = cur.next;
+                cur.next = t.next;
+                t.next = prev.next;
+                prev.next = t;
             }
-            prev.next = tempPrev.next;
             prev = cur;
+            length = length - k;
         }
         return dummy.next;
     }
