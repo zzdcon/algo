@@ -1,6 +1,7 @@
 package algo.leetcode.linkedList;
 
 import algo.dataStructure.ListNode;
+import algo.tools.ListNodeBuilder;
 
 //反转一个单链表。
 //
@@ -71,6 +72,10 @@ public class ReverseList {
         }
         return prev.next;
 
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ReverseList().reverseList3(ListNodeBuilder.build(new int[] {1, 2, 3})));
     }
 
 }
