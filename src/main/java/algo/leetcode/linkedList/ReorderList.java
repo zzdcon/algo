@@ -13,6 +13,7 @@ package algo.leetcode.linkedList;//给定一个单链表 L：L0→L1→…→Ln-
 //
 
 import algo.dataStructure.ListNode;
+import algo.tools.ListNodeBuilder;
 
 /**
  * Definition for singly-linked list.
@@ -27,15 +28,37 @@ class ReorderList {
         if (head == null || head.next == null) {
             return;
         }
+
         ListNode slow = head;
         ListNode fast = head;
-
-        while (fast != null) {
-            if (fast.next != null) {
-                fast = fast.next.next;
-            }
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
             slow = slow.next;
         }
 
+        ListNode p1 = head;
+        ListNode p2 = reverList(slow);
+        while (p1 != slow) {
+            ListNo
+            ListNode next = p1.next;
+            p1.next = p2;
+            p2.next = next;
+        }
+
+    }
+
+    private ListNode reverList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode next = reverList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return next;
+    }
+
+    public static void main(String[] args) {
+        ListNode node = ListNodeBuilder.build(new int[] {1, 2, 3, 4});
+        new ReorderList().reorderList(node);
     }
 }
