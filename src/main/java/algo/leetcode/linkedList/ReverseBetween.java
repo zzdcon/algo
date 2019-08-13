@@ -11,6 +11,7 @@ import algo.dataStructure.ListNode;
  * }
  */
 class ReverseBetween {
+    // 先移动到m位置，再把m~n每个节点的值放到从m位置开始的链表头部
     public ListNode reverseBetween(ListNode head, int m, int n) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;

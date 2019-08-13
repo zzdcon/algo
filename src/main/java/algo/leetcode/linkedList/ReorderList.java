@@ -17,7 +17,7 @@ import algo.tools.ListNodeBuilder;
 
 /**
  * Definition for singly-linked list.
- * public class ListNode {
+ * public class ListNode {g
  *     int val;
  *     ListNode next;
  *     ListNode(int x) { val = x; }
@@ -57,6 +57,7 @@ class ReorderList {
         head.next = null;
         return next;
     }
+
 
     public static void main(String[] args) {
         ListNode node = ListNodeBuilder.build(new int[] {1, 2, 3, 4});

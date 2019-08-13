@@ -21,6 +21,7 @@ package algo.leetcode.linkedList;//给你一个链表，每 k 个节点一组进
 //
 
 import algo.dataStructure.ListNode;
+import algo.tools.ListNodeBuilder;
 
 import java.util.Stack;
 
@@ -66,7 +67,6 @@ class ReverseKGroup {
         if (length<k) {
             return head;
         }
-
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode prev = dummy;
@@ -83,5 +83,9 @@ class ReverseKGroup {
             length = length - k;
         }
         return dummy.next;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ReverseKGroup().reverseKGroup(ListNodeBuilder.build(new int[] {1, 2, 3, 4, 5}), 2));
     }
 }
