@@ -1,6 +1,7 @@
 package algo.leetcode.linkedList;
 
 import algo.dataStructure.ListNode;
+import algo.tools.ListNodeBuilder;
 
 //反转一个单链表。
 //
@@ -54,6 +55,27 @@ public class ReverseList {
         }
         return prev;
 
+    }
+
+    public ListNode reverseList3(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode prev = new ListNode(0);
+        prev.next = head;
+        ListNode cur = head;
+        while (cur.next != null) {
+            ListNode t = cur.next;
+            cur.next = t.next;
+            t.next = prev.next;
+            prev.next = t;
+        }
+        return prev.next;
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ReverseList().reverseList3(ListNodeBuilder.build(new int[] {1, 2, 3})));
     }
 
 }

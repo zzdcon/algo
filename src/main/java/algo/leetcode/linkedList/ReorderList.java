@@ -14,11 +14,9 @@ package algo.leetcode.linkedList;//给定一个单链表 L：L0→L1→…→Ln-
 
 import algo.dataStructure.ListNode;
 
-import java.util.Stack;
-
 /**
  * Definition for singly-linked list.
- * public class ListNode {
+ * public class ListNode {g
  *     int val;
  *     ListNode next;
  *     ListNode(int x) { val = x; }
@@ -26,30 +24,6 @@ import java.util.Stack;
  */
 class ReorderList {
     public void reorderList(ListNode head) {
-        if (head == null || head.next == null) {
-            return;
-        }
-        Stack<ListNode> stack = new Stack<>();
-        ListNode cur = head;
-        int cnt = 0;
-        while (cur != null) {
-            stack.push(new ListNode(cur.val));
-            cur = cur.next;
-            cnt++;
-        }
-        cur = head;
-        int i = cnt/2;
-        while (i-- > 0) {
-            ListNode temp = cur.next;
-            cur.next = stack.peek();
-            cur = cur.next;
-            cur.next = temp;
-            cur = cur.next;
-        }
 
-        if (cnt %2 == 1) {
-            cur = cur.next;
-        }
-        cur.next = null;
     }
 }
