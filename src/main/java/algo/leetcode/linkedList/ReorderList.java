@@ -30,19 +30,20 @@ class ReorderList {
         }
 
         ListNode slow = head;
-        ListNode fast = head;
+        ListNode fast = head.next;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
-
-        ListNode p1 = head;
-        ListNode p2 = reverList(slow);
-        while (p1 != slow) {
-            ListNo
-            ListNode next = p1.next;
-            p1.next = p2;
-            p2.next = next;
+        ListNode right = reverList(slow.next);
+        slow.next = null;
+        ListNode left = head;
+        while (right != null) {
+            ListNode next = right.next;
+            right.next = left.next;
+            left.next = right;
+            right = next;
+            left = left.next.next;
         }
 
     }
