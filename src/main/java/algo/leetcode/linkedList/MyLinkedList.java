@@ -114,7 +114,7 @@ class MyLinkedList {
     }
 
     private boolean checkRange(int index) {
-        return !(index < 0 || index > size);
+        return !(index < 0 || index > (size -1));
     }
 
 
