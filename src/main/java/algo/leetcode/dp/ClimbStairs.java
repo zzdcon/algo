@@ -1,4 +1,4 @@
-package algo.leetcode.dynamic.program;//假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
+package algo.leetcode.dp;//假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
 //
 // 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？ 
 //
@@ -23,9 +23,6 @@ package algo.leetcode.dynamic.program;//假设你正在爬楼梯。需要 n 阶�
 // 
 // Related Topics 动态规划
 
-
-import java.util.HashMap;
-import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class ClimbStairs {
