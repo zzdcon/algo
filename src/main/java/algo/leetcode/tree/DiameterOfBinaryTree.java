@@ -32,33 +32,23 @@ import algo.dataStructure.TreeNode;
  * }
  */
 class DiameterOfBinaryTree {
+    int ans = 0;
+
     public int diameterOfBinaryTree(TreeNode root) {
-        if (root == null) {
+       getDepth(root);
+       return ans;
+    }
+
+    private int getDepth(TreeNode node) {
+        if (node == null) {
             return 0;
         }
-        return maxDepth(root.left) + maxDepth(root.right);
+
+        int left = getDepth(node.left);
+        int right = getDepth(node.right);
+        ans = Math.max(right+left, ans);
+        return Math.max(left, right) + 1;
     }
 
-    public int maxDepth(TreeNode treeNode) {
-        if (treeNode == null) {
-            return 0;
-        }
-        if (treeNode.left == null && treeNode.right == null) {
-            return 1;
-        }
-        if (treeNode.left == null) {
-            return maxDepth(treeNode.right) + 1;
-        } else if (treeNode.right == null) {
-            return maxDepth(treeNode.left) + 1;
-        }
-
-        return Math.max(maxDepth(treeNode.left), maxDepth(treeNode.right)) + 1;
-    }
-
-    public static void main(String[] args) {
-        TreeNode treeNode = TreeNodeHelper.constructNode(new Integer[]{1, 2, 3, 4, 5});
-        int i = new DiameterOfBinaryTree().diameterOfBinaryTree(treeNode);
-        System.out.println(i);
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
