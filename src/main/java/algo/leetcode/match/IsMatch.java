@@ -61,7 +61,20 @@ package algo.leetcode.match;//给你一个字符串 s 和一个字符规律 p，
 //leetcode submit region begin(Prohibit modification and deletion)
 class IsMatch {
     public boolean isMatch(String s, String p) {
-        return false;
+        if (p.isEmpty())
+            return s.isEmpty();
+        boolean firstMatch = s.length() >= 1 && (s.charAt(0) == p.charAt(0)
+                || p.charAt(0) == '.');
+
+        if (p.length() >= 2 && p.charAt(1) == '*') {
+            return isMatch(s, p.substring(2)) || firstMatch && isMatch(s.substring(1), p);
+        } else {
+            return firstMatch && isMatch(s.substring(1), p.substring(1));
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new IsMatch().isMatch("aaa", "a*a"));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
