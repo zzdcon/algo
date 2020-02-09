@@ -1,4 +1,4 @@
-package algo.leetcode.search;//假设按照升序排序的数组在预先未知的某个点上进行了旋转。
+package algo.leetcode.array;//假设按照升序排序的数组在预先未知的某个点上进行了旋转。
 //
 // ( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。 
 //
@@ -20,8 +20,6 @@ package algo.leetcode.search;//假设按照升序排序的数组在预先未知�
 //输出: -1 
 // Related Topics 数组 二分查找
 
-
-import javax.sql.rowset.serial.SerialArray;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Search {
@@ -82,27 +80,19 @@ class Search {
         int high = nums.length - 1;
         int mid;
         while (low <= high) {
-            if (nums[low] == target) {
-                return low;
-            }
-
-            if (nums[high] == target) {
-                return high;
-            }
-
             mid = low + (high - low)/2;
             if (nums[mid] == target) {
                 return mid;
             }
 
             if (nums[low] <= nums[mid]) {
-                if (target > nums[low] && target < nums[mid]) {
+                if (target >= nums[low] && target < nums[mid]) {
                     high = mid - 1;
                 } else {
                     low = mid + 1;
                 }
             } else {
-                if (target < nums[high] && target > nums[mid]) {
+                if (target <= nums[high] && target > nums[mid]) {
                     low = mid + 1;
                 } else {
                     high = mid - 1;
@@ -114,7 +104,7 @@ class Search {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Search().search(new int[]{5, 1, 2, 3, 4}, 0));
+        System.out.println(new Search().search2(new int[]{4,5,6,7,0,1,2}, 0));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
