@@ -41,10 +41,9 @@ class Permute {
         int partLen = next.get(0).size();
         for (List<Integer> list : next) {
             for (int i=0; i<=partLen; i++) {
-                ArrayList<Integer> list1 = (ArrayList<Integer>) list;
-                ArrayList<Integer> list2 = (ArrayList<Integer>) list1.clone();
-                list2.add(i, num);
-                ans.add(list2);
+                ArrayList<Integer> list1 = new ArrayList<>(list);
+                list1.add(i, num);
+                ans.add(list1);
             }
         }
         return ans;
