@@ -24,6 +24,12 @@ import java.util.List;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Subsets {
+
+    /**
+     * 算法一： 递归算法
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> subsets(int[] nums) {
         if (nums == null || nums.length == 0) {
             return new ArrayList<>();
@@ -57,8 +63,65 @@ class Subsets {
     }
 
 
-    public static void main(String[] args) {
-        System.out.println(new Subsets().subsets(new int[] {1, 2, 3}));
+    /**
+     * 标准回溯算法
+     * @param nums
+     * @return
+     */
+
+    List<List<Integer>> ans = new ArrayList<>();
+    public List<List<Integer>> subsets2(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return ans;
+        }
+        backtrack(new ArrayList<>(), 0, nums);
+        return ans;
     }
+
+    /**
+     * 回溯方法
+     * @param track 选择路径
+     * @param start 选择列表
+     * @param nums 选择列表
+     * @return
+     */
+    public void backtrack(List<Integer> track, int start, int[] nums) {
+        ans.add(new ArrayList<>(track));
+        for (int i=start; i< nums.length; i++) {
+            track.add(nums[i]);
+            backtrack(track, i+1, nums);
+            track.remove(track.size()-1);
+        }
+    }
+
+    List<List<Integer>> lists = new ArrayList<>();
+
+    public List<List<Integer>> subsets3(int[] nums) {
+        if(nums == null || nums.length ==0){
+            return lists;
+        }
+
+        List<Integer> list = new ArrayList<>();
+        process(list, nums, 0);
+        return lists;
+
+    }
+
+    private void process(List<Integer>list, int[] nums, int start){
+
+        lists.add(new ArrayList(list));
+        for(int i = start; i < nums.length; i++){
+
+            list.add(nums[i]);
+            process(list, nums, i+1);
+            list.remove(list.size()-1);
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Subsets().subsets2(new int[] {1, 2, 3}));
+    }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
