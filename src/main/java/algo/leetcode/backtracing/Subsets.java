@@ -118,8 +118,33 @@ class Subsets {
         }
     }
 
+
+    /**
+     * 位移法
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> subsets4(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        if(nums == null || nums.length ==0){
+            return ans;
+        }
+
+        int no = 1<<nums.length;
+        for (int i=0; i<no; i++) {
+            List<Integer> list = new ArrayList<>();
+            for (int j=0; j<nums.length; j++) {
+                if ((i>>j & 1) == 0) {
+                    list.add(nums[j]);
+                }
+            }
+            ans.add(list);
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new Subsets().subsets2(new int[] {1, 2, 3}));
+        System.out.println(new Subsets().subsets4(new int[] {1, 2, 3}));
     }
 
 
