@@ -1,4 +1,4 @@
-package algo.leetcode.backtracing;//给定一个没有重复数字的序列，返回其所有可能的全排列。
+package algo.leetcode.backtrack;//给定一个没有重复数字的序列，返回其所有可能的全排列。
 //
 // 示例: 
 //
