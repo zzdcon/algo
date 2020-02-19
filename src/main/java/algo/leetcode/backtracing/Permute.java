@@ -84,6 +84,9 @@ class Permute {
 
     List<List<Integer>> res = new LinkedList<>();
 
+
+
+
     /* 主函数，输入一组不重复的数字，返回它们的全排列 */
     List<List<Integer>> permute3(int[] nums) {
         // 记录「路径」
@@ -117,7 +120,7 @@ class Permute {
 
 
     public static void main(String[] args) {
-        System.out.println(new Permute().permute3(new int[] {1,2,3}));
+        System.out.println(new Permute().permute2(new int[] {1,2,3}));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
