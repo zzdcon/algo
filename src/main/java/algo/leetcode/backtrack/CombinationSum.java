@@ -40,26 +40,22 @@ class CombinationSum {
         if (candidates == null || candidates.length == 0) {
             return res;
         }
-        Arrays.sort(candidates);
-        backtrack(new ArrayList<>(), target, candidates);
+        backtrack(new ArrayList<>(), target,0,  candidates);
         return res;
     }
 
-    private void backtrack(List<Integer> track, int target, int[] nums) {
-        int sum=track.stream().mapToInt(Integer::intValue).sum();
-        if (sum == target) {
+    private void backtrack(List<Integer> track, int target, int start, int[] nums) {
+        if (target == 0) {
             res.add(new ArrayList<>(track));
-        } else if (sum > target) {
             return;
         }
 
-        for (int i=0; i<nums.length; i++) {
-            if (track.size() >=1 && nums[i] < track.get(track.size()-1)) {
-                continue;
+        for (int i=start; i<nums.length; i++) {
+            if (nums[i] <= target) {
+                track.add(nums[i]);
+                backtrack(track, target-nums[i], i, nums);
+                track.remove(track.size()-1);
             }
-            track.add(nums[i]);
-            backtrack(track, target, nums);
-            track.remove(track.size()-1);
         }
 
     }
@@ -91,7 +87,7 @@ class CombinationSum {
 
 
     public static void main(String[] args) {
-        System.out.println(new CombinationSum().combinationSum2(new int[]{3, 2, 5}, 8));
+        System.out.println(new CombinationSum().combinationSum(new int[]{3, 2, 5}, 8));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
