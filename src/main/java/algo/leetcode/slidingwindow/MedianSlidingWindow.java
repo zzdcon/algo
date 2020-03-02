@@ -62,7 +62,7 @@ class MedianSlidingWindow {
 
             if (i>=k-1) {
                 // 计算中位数
-                ans[j++]= (k%2 == 0) ? (minHeap.peek()*0.5+maxHeap.peek()*0.5) : maxHeap.peek();
+                ans[j++]= ((k & 1) == 0) ? (minHeap.peek()*0.5+maxHeap.peek()*0.5) : maxHeap.peek();
                 // 移除数据
                 if (nums[i-k+1] <= maxHeap.peek()) {
                     maxHeap.remove(nums[i-k+1]);
