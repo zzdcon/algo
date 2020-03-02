@@ -31,6 +31,19 @@ public class ReverseList {
         return newNode;
     }
 
+    public ListNode reverseList4(ListNode head) {
+        ListNode before = new ListNode(0);
+        before.next = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = before.next;
+            before.next = cur;
+            cur = next;
+        }
+        return before.next;
+    }
+
     /**
      * 遍历法
      * 假设存在链表 1 → 2 → 3 → Ø，我们想要把它改成 Ø ← 1 ← 2 ← 3。
