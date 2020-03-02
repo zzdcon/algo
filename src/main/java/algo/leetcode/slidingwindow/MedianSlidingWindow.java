@@ -38,10 +38,53 @@ package algo.leetcode.slidingwindow;//中位数是有序序列最中间的那个
 // Related Topics Sliding Window
 
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class MedianSlidingWindow {
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
     public double[] medianSlidingWindow(int[] nums, int k) {
-        return null;
+        if (nums == null || nums.length == 0 || k == 0) {
+            return new double[0];
+        }
+        int len = nums.length;
+        double[] ans = new double[len-k+1];
+        int j=0;
+        for (int i=0; i< len; i++) {
+            // 添加新数据
+            maxHeap.offer(nums[i]);
+            minHeap.offer(maxHeap.poll());
+            if (minHeap.size() > maxHeap.size()) {
+                maxHeap.offer(minHeap.poll());
+            }
+
+            if (i>=k-1) {
+                // 计算中位数
+                ans[j++]= (k%2 == 0) ? (minHeap.peek()*0.5+maxHeap.peek()*0.5) : maxHeap.peek();
+                // 移除数据
+                if (nums[i-k+1] <= maxHeap.peek()) {
+                    maxHeap.remove(nums[i-k+1]);
+                } else {
+                    minHeap.remove(nums[i-k+1]);
+                }
+
+            }
+
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(((o1, o2) -> o2 > o1 ? 1 : -1));
+        maxHeap.add(1);
+        maxHeap.add(-2147483648);
+        maxHeap.add(5);
+        System.out.println(maxHeap);
+
+
+        System.out.println(new MedianSlidingWindow().medianSlidingWindow(new int[]{-2147483648,-2147483648,2147483647,-2147483648,-2147483648,-2147483648,2147483647,2147483647,2147483647,2147483647,-2147483648,2147483647,-2147483648}, 3));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
