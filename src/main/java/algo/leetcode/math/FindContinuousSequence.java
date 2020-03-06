@@ -71,6 +71,7 @@ class FindContinuousSequence {
 
 
     /**
+     * 双指针
      * 通过sum = (l+h)*n/2
      *
      * @param target
@@ -108,22 +109,17 @@ class FindContinuousSequence {
         List<int[]> res = new ArrayList<>();
         // 连续数的个数
         int i = 2;
-        while (i < target / 2 + 1) {
-            int subSum = 0;
-            for (int k = 1; k < i; k++) {
-                subSum += k;
+        int add = 1;
+        while (target>=i) {
+            target -= add++;
+            if (target >= i && target % i == 0) {
+                int[] ans = new int[i];
+                int start = target / i;
+                for (int index = 0; index < i; index++) {
+                    ans[index] = start + index;
+                }
+                res.add(0, ans);
             }
-            if ((target - subSum) % i != 0) {
-                i++;
-                continue;
-            }
-            int start = (target - subSum) / i;
-            if (start < 1) break;
-            int[] ans = new int[i];
-            for (int index = 0; index < i; index++) {
-                ans[index] = start + index;
-            }
-            res.add(0, ans);
             i++;
         }
         return res.toArray(new int[0][]);
