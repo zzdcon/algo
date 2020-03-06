@@ -25,10 +25,23 @@ package algo.leetcode.math;//给定一个正整数 N，试求有多少组连续�
 // Related Topics 数学
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class ConsecutiveNumbersSum {
     public int consecutiveNumbersSum(int N) {
-        return 0;
+        int add = 1;
+        int i = 2;
+        int result = 0;
+        while (N > 2) {
+            N -= add++;
+            if (N >= i && N%i == 0) {
+                result++;
+            }
+            i++;
+        }
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
