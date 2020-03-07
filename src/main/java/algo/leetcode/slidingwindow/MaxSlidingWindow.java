@@ -85,6 +85,8 @@ class MaxSlidingWindow {
                 }
             }
             while (!max.isEmpty() && nums[i] > max.peekLast()) {
+                //不用保留比nums[i]小的数字的原因是
+                //nums[i]进来早的数字也比nums[i]更先弹出，所以不用担心最大值是被扔掉的数字
                 max.removeLast();
             }
 
