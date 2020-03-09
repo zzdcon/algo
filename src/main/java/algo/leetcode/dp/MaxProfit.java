@@ -23,26 +23,53 @@ package algo.leetcode.dp;//给定一个数组，它的第 i 个元素是一支�
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class MaxProfit {
+    /**
+     * 方法一：动态规划 前i天的最大收益 = max{前i-1天的最大收益，第i天的价格-前i-1天中的最小价格}
+     * @param prices
+     * @return
+     */
     public int maxProfit(int[] prices) {
-        //动态规划 前i天的最大收益 = max{前i-1天的最大收益，第i天的价格-前i-1天中的最小价格}
         if (prices.length == 0) {
             return 0;
         }
         int[] dp = new int[prices.length];
         dp[0] = 0;
         int minPrice = prices[0];
-        for (int i=1; i< prices.length; i++) {
-            dp[i] = Math.max(dp[i-1], prices[i] - minPrice);
+        for (int i = 1; i < prices.length; i++) {
+            dp[i] = Math.max(dp[i - 1], prices[i] - minPrice);
             if (prices[i] < minPrice) {
                 minPrice = prices[i];
             }
         }
-        return dp[prices.length-1];
+        return dp[prices.length - 1];
     }
 
+    /**
+     * 记录历史最低点，选择当天卖出，与历史的最大利润做比较
+     * @param prices
+     * @return
+     */
+    public int maxProfit2(int[] prices) {
+        if (prices.length == 0) {
+            return 0;
+        }
+
+        int minPrice = prices[0];
+        int maxProfit = 0;
+        for (int i=1; i<prices.length; i++) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            } else {
+                maxProfit = Math.max(maxProfit, prices[i]-minPrice);
+            }
+        }
+        return maxProfit;
+    }
+
+
     public static void main(String[] args) {
-        System.out.println(new MaxProfit().maxProfit(new int[]{7,1,5,3,6,4}));
-        System.out.println(new MaxProfit().maxProfit(new int[]{7,6,4,3,1}));
+        System.out.println(new MaxProfit().maxProfit2(new int[]{7, 1, 5, 3, 6, 4}));
+        System.out.println(new MaxProfit().maxProfit2(new int[]{7, 6, 4, 3, 1}));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
