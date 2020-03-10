@@ -31,7 +31,7 @@ package algo.leetcode.dp;
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class MaxProfit2 {
+class MaxProfit_infinity_trade {
 
     /**
      * 方法一：
@@ -81,8 +81,8 @@ class MaxProfit2 {
 
 
     public static void main(String[] args) {
-//        System.out.println(new MaxProfit2().maxProfit(new int[]{7, 1, 5, 3, 6, 4}));
-        System.out.println(new MaxProfit2().maxProfit(new int[]{2,4,1}));
+//        System.out.println(new MaxProfit_infinity_trade().maxProfit(new int[]{7, 1, 5, 3, 6, 4}));
+        System.out.println(new MaxProfit_infinity_trade().maxProfit(new int[]{2,4,1}));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

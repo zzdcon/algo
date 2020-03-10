@@ -22,7 +22,7 @@ package algo.leetcode.dp;//给定一个数组，它的第 i 个元素是一支�
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class MaxProfit {
+class MaxProfit_1_trade {
     /**
      * 方法一：动态规划 前i天的最大收益 = max{前i-1天的最大收益，第i天的价格-前i-1天中的最小价格}
      * @param prices
@@ -68,8 +68,8 @@ class MaxProfit {
 
 
     public static void main(String[] args) {
-        System.out.println(new MaxProfit().maxProfit2(new int[]{7, 1, 5, 3, 6, 4}));
-        System.out.println(new MaxProfit().maxProfit2(new int[]{7, 6, 4, 3, 1}));
+        System.out.println(new MaxProfit_1_trade().maxProfit2(new int[]{7, 1, 5, 3, 6, 4}));
+        System.out.println(new MaxProfit_1_trade().maxProfit2(new int[]{7, 6, 4, 3, 1}));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

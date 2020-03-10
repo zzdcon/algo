@@ -29,7 +29,7 @@ package algo.leetcode.dp;//给定一个数组，它的第 i 个元素是一支�
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class MaxProfit3 {
+class MaxProfit_2_trade {
     /**
      * 动态规划
      * @param prices
@@ -62,9 +62,9 @@ class MaxProfit3 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new MaxProfit3().maxProfit(new int[]{3,3,5,0,0,3,1,4}));
-        System.out.println(new MaxProfit3().maxProfit(new int[]{1,2,3,4,5}));
-        System.out.println(new MaxProfit3().maxProfit(new int[]{7,6,4,3,1}));
+        System.out.println(new MaxProfit_2_trade().maxProfit(new int[]{3,3,5,0,0,3,1,4}));
+        System.out.println(new MaxProfit_2_trade().maxProfit(new int[]{1,2,3,4,5}));
+        System.out.println(new MaxProfit_2_trade().maxProfit(new int[]{7,6,4,3,1}));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
