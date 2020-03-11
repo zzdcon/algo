@@ -1,4 +1,6 @@
-package algo.leetcode.slidingwindow;//给出矩阵 matrix 和目标值 target，返回元素总和等于目标值的非空子矩阵的数量。
+package algo.leetcode.slidingwindow;
+
+//给出矩阵 matrix 和目标值 target，返回元素总和等于目标值的非空子矩阵的数量。
 //
 // 子矩阵 x1, y1, x2, y2 是满足 x1 <= x <= x2 且 y1 <= y <= y2 的所有单元 matrix[x][y] 的集合。 
 //
@@ -42,6 +44,13 @@ import java.util.Arrays;
 //leetcode submit region begin(Prohibit modification and deletion)
 class NumSubmatrixSumTarget {
 
+
+    public int numSubmatrixSumTarget(int[][] matrix, int target) {
+        if (matrix.length == 0) {
+            return 0;
+        }
+        return 0;
+    }
 
 
     public static void main(String[] args) {
