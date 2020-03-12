@@ -54,33 +54,30 @@ class CanThreePartsEqualSum {
         if (A == null || A.length < 3) {
             return false;
         }
-        Map<Long, List<Integer>>  sum2Index = new HashMap<>();
-        int cntZero = 0;
-        long sum = 0;
-        for (int i=0; i<A.length; i++) {
+        Map<Integer, List<Integer>> sum2Index = new HashMap<>();
+        int sum = 0;
+        for (int i = 0; i < A.length; i++) {
             sum += A[i];
             List<Integer> index = sum2Index.getOrDefault(sum, new ArrayList<>());
             index.add(i);
             sum2Index.put(sum, index);
-            if (sum == 0) {
-                cntZero++;
-            }
+        }
+        if (sum % 3 != 0) {
+            return false;
         }
         if (sum == 0) {
-            return cntZero>=3;
+            return sum2Index.get(0).size() >= 3;
         }
-        if (sum % 3 == 0) {
-            List<Integer> l1 = sum2Index.get(sum / 3);
-            List<Integer> l2 = sum2Index.get(sum / 3 * 2);
-            return l1 != null && l2 != null && l1.get(0)<l2.get(l2.size()-1);
-        }
-        return false;
+        List<Integer> l1 = sum2Index.get(sum / 3);
+        List<Integer> l2 = sum2Index.get(sum / 3 * 2);
+        return l1 != null && l2 != null && l1.get(0) < l2.get(l2.size() - 1);
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        System.out.println(new CanThreePartsEqualSum().canThreePartsEqualSum(new int[]{0,2,1,-6,6,-7,9,1,2,0,1}));
-        System.out.println(new CanThreePartsEqualSum().canThreePartsEqualSum(new int[]{0,2,1,-6,6,7,9,-1,2,0,1}));
-        System.out.println(new CanThreePartsEqualSum().canThreePartsEqualSum(new int[]{3,3,6,5,-2,2,5,1,-9,4}));
+    public static void main(String[] args) {
+        System.out.println(new CanThreePartsEqualSum().canThreePartsEqualSum(new int[]{1,-1,1,-1}));
+//        System.out.println(new CanThreePartsEqualSum().canThreePartsEqualSum(new int[]{0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1}));
+//        System.out.println(new CanThreePartsEqualSum().canThreePartsEqualSum(new int[]{0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1}));
+//        System.out.println(new CanThreePartsEqualSum().canThreePartsEqualSum(new int[]{3, 3, 6, 5, -2, 2, 5, 1, -9, 4}));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
