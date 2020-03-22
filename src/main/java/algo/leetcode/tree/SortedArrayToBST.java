@@ -50,7 +50,7 @@ class SortedArrayToBST {
         int rootIndex = list.size() / 2;
         TreeNode treeNode = new TreeNode(list.get(rootIndex));
         treeNode.left = buildTreeNode(list.subList(0, rootIndex));
-        treeNode.right = buildTreeNode(list.subList(rootIndex+1, list.size()));
+        treeNode.right = buildTreeNode(list.subList(rootIndex+1, list.size()-1));
         return treeNode;
     }
 
