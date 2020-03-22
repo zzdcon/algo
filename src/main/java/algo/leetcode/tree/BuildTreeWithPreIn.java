@@ -23,7 +23,6 @@ package algo.leetcode.tree;//根据一棵树的前序遍历与中序遍历构造
 import algo.dataStructure.TreeNode;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -37,7 +36,7 @@ import java.util.stream.IntStream;
  *     TreeNode(int x) { val = x; }
  * }
  */
-class BuildTree {
+class BuildTreeWithPreIn {
     /**
      例如在例题中：
 
@@ -102,7 +101,7 @@ class BuildTree {
 
 
     public static void main(String[] args) {
-        TreeNode treeNode = new BuildTree().buildTree(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
+        TreeNode treeNode = new BuildTreeWithPreIn().buildTree(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
         System.out.println(treeNode);
     }
 }
