@@ -28,6 +28,8 @@ package algo.leetcode.tree;//给定一个二叉树，原地将它展开为链表
 
 import algo.dataStructure.TreeNode;
 
+import java.util.Stack;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -64,11 +66,39 @@ class Flatten {
         flatten(root.right);
     }
 
+    /**
+     * 前序遍历，通过堆栈实现
+     * @param root
+     */
+    public void flatten2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        TreeNode pre = null;
+        while (!stack.isEmpty()) {
+            TreeNode temp = stack.pop();
+            if (pre != null) {
+                pre.right = temp;
+                pre.left = null;
+            }
+            if (temp.right != null) {
+                stack.push(temp.right);
+            }
+            if (temp.left != null) {
+                stack.push(temp.left);
+            }
+            pre = temp;
+        }
+    }
+
 
 
     public static void main(String[] args) {
         TreeNode treeNode = TreeNodeHelper.constructNode(new Integer[]{3, 9, 20, null, null, 15, 7});
-        new Flatten().flatten(treeNode);
+        new Flatten().flatten2(treeNode);
         System.out.println(treeNode);
     }
 
