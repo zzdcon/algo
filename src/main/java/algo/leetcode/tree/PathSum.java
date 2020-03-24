@@ -37,10 +37,10 @@ import java.util.List;
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode(int x) { val = x; }
  * }
  */
 class PathSum {
@@ -83,7 +83,7 @@ class PathSum {
         }
         routine.add(root.val);
         sum -= root.val;
-        if (root.left==null && root.right == null) {
+        if (root.left == null && root.right == null) {
             if (sum == 0) {
                 ans.add(routine);
             }
@@ -91,12 +91,11 @@ class PathSum {
         }
         dfs(root.left, ans, new ArrayList<>(routine), sum);
         dfs(root.right, ans, new ArrayList<>(routine), sum);
-        routine.remove(routine.size()-1);
     }
 
 
-        public static void main(String[] args) {
-        System.out.println(new PathSum().pathSum(TreeNodeHelper.constructNode(new Integer[]{5, 4, 8, 11, null, 13, 4, 7,2,5,1}), 22));
+    public static void main(String[] args) {
+        System.out.println(new PathSum().pathSum(TreeNodeHelper.constructNode(new Integer[]{5, 4, 8, 11, null, 13, 4, 7, 2, 5, 1}), 22));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

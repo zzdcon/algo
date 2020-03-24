@@ -3,7 +3,8 @@ package algo.leetcode.tree;
 import algo.dataStructure.TreeNode;
 
 public class TreeNodeHelper {
-    public static TreeNode constructNode(Integer[] input) {
+    public static TreeNode
+    constructNode(Integer[] input) {
         TreeNode root = new TreeNode(input[0]);
         setNode(input, root, 1);
         return root;
