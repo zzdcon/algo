@@ -46,6 +46,8 @@ package algo.leetcode.tree;//给定一个完美二叉树，其所有叶子节点
 
 import algo.dataStructure.Node;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -76,18 +78,20 @@ class Connect {
         if (root == null) {
             return null;
         }
-        Stack<Node> stack = new Stack<>();
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            int cnt = stack.size();
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int cnt = queue.size();
             Node pre = null;
             while (cnt > 0) {
-                Node cur = stack.pop();
+                Node cur = queue.poll();
                 if (cur.left != null)
-                    stack.push(cur.left);
+                    queue.add(cur.left);
                 if (cur.right != null)
-                    stack.push(cur.right);
-                cur.next = pre;
+                    queue.add(cur.right);
+                if (pre != null) {
+                    pre.next = cur;
+                }
                 pre = cur;
                 cnt--;
             }
