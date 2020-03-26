@@ -74,6 +74,12 @@ class Node {
 };
 */
 class Connect {
+    /**
+     * 方法一：队列
+     *
+     * @param root
+     * @return
+     */
     public Node connect(Node root) {
         if (root == null) {
             return null;
@@ -97,6 +103,50 @@ class Connect {
             }
         }
         return root;
+    }
+
+    /**
+     * 方法二： 递归法(利用已经建立的next指针)
+     *
+     * @param root
+     * @return
+     */
+    public Node connect2(Node root) {
+        if (root == null) {
+            return root;
+        }
+
+        if (root.right != null) {
+            root.left.next = root.right;
+            if (root.next != null)
+                if (root.next.left != null) {
+                    root.right.next = root.next.left;
+                }
+        }
+
+        connect(root.left);
+        connect(root.right);
+        return root;
+    }
+
+    /**
+     * 方法3： 递归
+     * @param node
+     * @return
+     */
+    public Node connect3(Node node) {
+        if (node == null) return null;
+        dfs(node.left, node.right);
+        return node;
+    }
+
+    public void dfs(Node left, Node right) {
+        if (left != null) {
+            left.next = right;
+            dfs(left.left, left.right);
+            dfs(left.right, right.left);
+            dfs(right.left, right.right);
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
