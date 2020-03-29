@@ -1,4 +1,6 @@
-package algo.leetcode.bfs;//你现在手里有一份大小为 N x N 的『地图』（网格） grid，上面的每个『区域』（单元格）都用 0 和 1 标记好了。其中 0 代表海洋，1 代表陆地，
+package algo.leetcode.bfs;
+
+//你现在手里有一份大小为 N x N 的『地图』（网格） grid，上面的每个『区域』（单元格）都用 0 和 1 标记好了。其中 0 代表海洋，1 代表陆地，
 //你知道距离陆地区域最远的海洋区域是是哪一个吗？请返回该海洋区域到离它最近的陆地区域的距离。 
 //
 // 我们这里说的距离是『曼哈顿距离』（ Manhattan Distance）：(x0, y0) 和 (x1, y1) 这两个区域之间的距离是 |x0 - x
@@ -42,14 +44,16 @@ package algo.leetcode.bfs;//你现在手里有一份大小为 N x N 的『地图
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class MaxDistance {
     /**
      * 方法一：暴力法
      * 记录所有的海洋位置和陆地位置，遍历每一个海洋位置，找到其离陆地最近的距离，从所有距离中找到最大的。
-     * 			执行耗时:2709 ms,击败了5.03% 的Java用户
-     * 			内存消耗:42 MB,击败了99.00% 的Java用户
+     * 执行耗时:2709 ms,击败了5.03% 的Java用户
+     * 内存消耗:42 MB,击败了99.00% 的Java用户
+     *
      * @param grid
      * @return
      */
@@ -57,12 +61,12 @@ class MaxDistance {
         List<Pixel> seas = new ArrayList<>();
         List<Pixel> lands = new ArrayList<>();
         int res = -1;
-        for (int i = 0; i<grid.length; i++) {
-            for (int j=0; j<grid[0].length; j++) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == 0) {
-                    seas.add(new Pixel(j,i));
+                    seas.add(new Pixel(j, i));
                 } else {
-                    lands.add(new Pixel(j,i));
+                    lands.add(new Pixel(j, i));
                 }
             }
         }
@@ -81,9 +85,9 @@ class MaxDistance {
     private int nearestDistance(List<Pixel> lands, Pixel sea) {
         int dist = Integer.MAX_VALUE;
         for (Pixel land : lands) {
-            dist = Math.min(Math.abs(land.x-sea.x) + Math.abs(land.y-sea.y), dist);
+            dist = Math.min(Math.abs(land.x - sea.x) + Math.abs(land.y - sea.y), dist);
             //海洋和陆地最多紧挨着，距离不能比1更小了
-            if (dist == 1){
+            if (dist == 1) {
                 return dist;
             }
         }
@@ -100,9 +104,55 @@ class MaxDistance {
         }
     }
 
+
+    /**
+     * 方法二：BFS
+     *
+     * @param grid
+     * @return
+     */
+    public int maxDistance2(int[][] grid) {
+        int n = grid.length;
+        Queue<int[]> queue = new LinkedList<>();
+        //把所有的陆地放入队列
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    queue.offer(new int[]{j, i});
+                }
+            }
+        }
+        // 都是海洋或者都是陆地，返回-1
+        if (queue.size() == 0 || queue.size() == n * n) {
+            return -1;
+        }
+        int res = 0;
+        int dir[][] = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] poll = queue.poll();
+                for (int j = 0; j < 4; j++) {
+                    int x = poll[0] + dir[j][0];
+                    int y = poll[1] + dir[j][1];
+                    if (x < 0 || x >= n || y < 0 || y >= n || grid[y][x] != 0) {
+                        continue;
+                    }
+                    grid[y][x] = 1;
+                    queue.offer(new int[]{x, y});
+                }
+            }
+            if (!queue.isEmpty()) res += 1;
+        }
+        return res;
+    }
+
+
     public static void main(String[] args) {
-        System.out.println(new MaxDistance().maxDistance( new  int[][]{{1,0,0},{0,0,0},{0,0,0}}));
-        System.out.println(new MaxDistance().maxDistance( new  int[][]{{1,0,1},{0,0,0},{1,0,1}}));
+//        System.out.println(new MaxDistance().maxDistance(new int[][]{{1, 0, 0}, {0, 0, 0}, {0, 0, 0}}));
+//        System.out.println(new MaxDistance().maxDistance(new int[][]{{1, 0, 1}, {0, 0, 0}, {1, 0, 1}}));
+        System.out.println(new MaxDistance().maxDistance2(new int[][]{{1, 0, 0}, {0, 0, 0}, {0, 0, 0}}));
+        System.out.println(new MaxDistance().maxDistance2(new int[][]{{1, 0, 1}, {0, 0, 0}, {1, 0, 1}}));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
