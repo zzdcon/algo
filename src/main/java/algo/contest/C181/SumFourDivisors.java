@@ -1,4 +1,4 @@
-package algo.contest;
+package algo.contest.C181;
 
 //给你一个整数数组 nums，请你返回该数组中恰有四个因数的这些整数的各因数之和。
 //

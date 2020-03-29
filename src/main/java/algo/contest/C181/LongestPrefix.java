@@ -1,4 +1,4 @@
-package algo.contest;
+package algo.contest.C181;
 
 //「快乐前缀」是在原字符串中既是 非空 前缀也是后缀（不包括原字符串自身）的字符串。
 //

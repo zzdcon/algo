@@ -1,4 +1,4 @@
-package algo.contest;
+package algo.contest.C181;
 
 import com.alibaba.fastjson.JSON;
 
