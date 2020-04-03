@@ -47,8 +47,54 @@ package algo.leetcode.array;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class GameOfLife {
+    /**
+     * 位运算，通过Int的第二位记录下一步要更新的状态
+     *
+     *  周围活细胞 < 2  活-> 死
+     *  两个或三个活细胞 活-> 活
+     *  周围活细胞 > 3 ，活 -> 死
+     *  死细胞周围 3个活细胞，死-> 活；
+     * @param board
+     */
     public void gameOfLife(int[][] board) {
+        if (board.length == 0) return;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                int cnt = countLive(board, j, i);
+                if (cnt == 3 || (cnt == 2 && board[i][j] == 1)) board[i][j] |= 2;
+            }
+        }
 
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                board[i][j] >>= 1;
+            }
+        }
+    }
+
+    private int countLive(int[][] board, int x, int y) {
+
+        int[][] dir = new int[][]{
+                {-1, -1}, {0, -1}, {1, -1},
+                {-1, 0}, {1, 0},
+                {-1, 1}, {0, 1}, {1, 1}
+        };
+
+        int cnt = 0;
+        for (int i=0; i<8; i++) {
+            int x1 = dir[i][0] + x;
+            int y1 = dir[i][1] + y;
+            if (x1 < 0 || x1 >= board[0].length || y1 < 0 || y1 >= board.length) {
+                continue;
+            }
+            if ((board[y1][x1] & 1) == 1) cnt++;
+        }
+        return cnt;
+    }
+
+    public static void main(String[] args) {
+        int[][] ints = {{0, 1, 0}, {0, 0, 1}, {1, 1, 1}, {0, 0, 0}};
+        new GameOfLife().gameOfLife(ints);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
