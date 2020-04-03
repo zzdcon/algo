@@ -1,4 +1,4 @@
-package algo.leetcode.dfs;
+package algo.leetcode.bfs;
 
 //给定两个单词（beginWord 和 endWord）和一个字典，找到从 beginWord 到 endWord 的最短转换序列的长度。转换需遵循如下规则：
 // 
@@ -104,24 +104,6 @@ class LadderLength {
     }
 
 
-    private HashSet<String> wordsWith1Diff(List<String> words, String target) {
-        HashSet<String> ans = new HashSet<>();
-        Iterator<String> iterator = words.iterator();
-
-        while (iterator.hasNext()) {
-            String word = iterator.next();
-            int cnt = 0;
-            for (int i=0; i<word.length(); i++) {
-                if (word.charAt(i) != target.charAt(i)) cnt++;
-            }
-            if (cnt == 1) {
-                ans.add(word);
-            }
-        }
-        return ans;
-    }
-
-
     /**
      * 双端BFS
      * @param beginWord
@@ -172,7 +154,6 @@ class LadderLength {
     }
 
     private int deBfs(HashSet<String> start, HashSet<String> end, HashSet<String> words, int depth) {
-
         if (start.size() > end.size()) {
             return deBfs(end, start, words, depth);
         }
