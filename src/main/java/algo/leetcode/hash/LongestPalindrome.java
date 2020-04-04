@@ -46,7 +46,7 @@ class LongestPalindrome {
     }
 
     public static void main(String[] args) {
-        System.out.println(new LongestPalindrome().longestPalindrome("abccccdd"));
+        System.out.println(new LongestPalindrome().longestPalindrome("bbbab"));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
