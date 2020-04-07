@@ -27,22 +27,25 @@ package algo.leetcode.greedy;
 // Related Topics 贪心算法
 
 
+import java.util.Arrays;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Candy {
     public int candy(int[] ratings) {
         if (ratings.length == 0) return 0;
         int[] ans = new int[ratings.length];
-        for (int i=0; i<ratings.length; i++) {
-            // 预先分配没人一个
-            ans[i] = 1;
-        }
-        while (!checkFinish(ratings, ans)) {
+        Arrays.fill(ans, 1);
+        boolean flag = true;
+        while (flag) {
+            flag = false;
             for (int i=1; i<ratings.length;) {
-                while (ratings[i] > ratings[i-1] && ans[i] <= ans[i - 1]) {
+                if (ratings[i] > ratings[i-1] && ans[i] <= ans[i - 1]) {
                     ans[i]++;
+                    flag = true;
                 }
-                while (ratings[i] < ratings[i-1] && ans[i] >= ans[i-1]) {
+                if (ratings[i] < ratings[i-1] && ans[i] >= ans[i-1]) {
                     ans[i-1]++;
+                    flag = true;
                 }
                 i++;
             }
@@ -52,15 +55,6 @@ class Candy {
             res += ans[i];
         }
         return res;
-    }
-
-    boolean checkFinish(int[] ratings, int[] ans) {
-        for (int i=1; i<ratings.length; i++) {
-            if (ratings[i] != ratings[i-1]) {
-                if ((ratings[i]-ratings[i-1])*(ans[i]-ans[i-1]) <=0) return false;
-            }
-        }
-        return true;
     }
 
     public static void main(String[] args) {
