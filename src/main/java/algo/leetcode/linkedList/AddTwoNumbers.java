@@ -39,14 +39,14 @@ class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         Stack<Integer> stack1 = getStackFromList(l1);
         Stack<Integer> stack2 = getStackFromList(l2);
-        int cache = 0;
+        int carry = 0;
         ListNode dummy = new ListNode(0);
-        while (!stack1.isEmpty() || !stack2.isEmpty() || cache > 0) {
+        while (!stack1.isEmpty() || !stack2.isEmpty() || carry > 0) {
             Integer val1 = stack1.isEmpty() ? 0 : stack1.pop();
             Integer val2 = stack2.isEmpty() ? 0 : stack2.pop();
-            int sum = val1 + val2 + cache;
+            int sum = val1 + val2 + carry;
             int val = sum % 10;
-            cache = sum >= 10 ? 1 : 0;
+            carry = sum >= 10 ? 1 : 0;
             ListNode next = dummy.next;
             dummy.next = new ListNode(val);
             dummy.next.next = next;
