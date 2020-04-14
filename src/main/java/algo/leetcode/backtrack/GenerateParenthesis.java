@@ -21,7 +21,7 @@ class GenerateParenthesis {
     /**
      * 方法一： 回溯法, 广度优先
      *
-     * Sn = "(" + (Sn-1)左  + ")" + (Sn-1)右
+     * Sn = "(" + Sn-1左  + ")" + Sn-1右
      *
      * @param n
      * @return
