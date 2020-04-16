@@ -15,6 +15,8 @@ package algo.leetcode.array;//给出一个区间的集合，请合并所有重�
 // Related Topics 排序 数组
 
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.*;
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -69,9 +71,34 @@ class Merge {
         }
     }
 
-    public static void main(String[] args) {
-        int[][] merge = new Merge().merge(new int[][]{{1, 3}, {2, 6}, {8, 10}, {15, 18}});
-        System.out.println(merge);
+    /**
+     * 数组排序
+     * @param intervals
+     * @return
+     */
+    public int[][] merge2(int[][] intervals) {
+        if (intervals.length < 2) {
+            return intervals;
+        }
+
+        Arrays.sort(intervals, Comparator.comparingInt(v -> v[0]));
+        int idx = -1;
+        int[][] res = new int[intervals.length][2];
+        for (int i=0; i<intervals.length; i++) {
+            if (idx == -1 || intervals[i][0] > res[idx][1]) {
+                // 没有相交, 继续
+                res[++idx] = intervals[i];
+            } else {
+                // 有相交
+                res[idx][1] = Math.max(intervals[i][1], res[idx][1]);
+            }
+        }
+        return Arrays.copyOf(res, idx+1);
+    }
+
+        public static void main(String[] args) {
+        int[][] merge = new Merge().merge2(new int[][]{{1, 3}, {2, 6}, {8, 10}, {15, 18}});
+        System.out.println(JSON.toJSON(merge));
     }
 
 
