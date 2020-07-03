@@ -47,7 +47,6 @@ package algo.leetcode.math;//排排坐，分糖果。
 // Related Topics 数学
 
 
-import com.sun.tools.javac.util.DiagnosticSource;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class DistributeCandies {
