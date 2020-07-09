@@ -96,9 +96,5 @@ class CountNodes {
         }
         return 1 + countNodes(root.left) + countNodes(root.right);
     }
-
-
-
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
