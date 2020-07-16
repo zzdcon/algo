@@ -119,5 +119,27 @@ class IsValidBST {
         }
         return true;
     }
+
+    /**
+     * 中序遍历，判断当前节点是否大于中序遍历的前一个节点，如果大于说明满足BST，继续遍历，否则直接返回false
+     * @param root
+     * @return
+     */
+    private long pre = Long.MIN_VALUE;
+    public boolean isValidBST4(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        if (!isValidBST(root.left)) {
+            return false;
+        }
+
+        if (root.val <= pre) {
+            return false;
+        }
+
+        pre = root.val;
+        return isValidBST(root.right);
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)

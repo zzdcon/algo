@@ -40,6 +40,19 @@ class NumTrees {
         }
         return ans[n];
     }
+    public int numTrees1(int n) {
+        if (n<=0) return 0;
+        int f[] = new int[n+1];
+        f[0] = 1;
+        for (int m=1; m<=n; m++ ) {
+            int ans = 0;
+            for (int i=0; i<m; i++) {
+                ans += f[i] * f[m-i-1];
+            }
+            f[m] = ans;
+        }
+        return f[n];
+    }
 
 
     // 公式计算法  Cn+1 = (4n+2)/(n+2) * Cn
