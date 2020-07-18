@@ -32,8 +32,9 @@ class MatProfit_with_cool {
                 continue;
             }
             // 第i天不持有股票时最大收益=max(第i-1天不持有的最大收益， 第i-1天持有的最大收益，第i天卖出, 收益增加prices[i])
-            dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1]+prices[i]);
             // 第i天持有股票最大收益= 之前就持有（dp[i-1][1]） 或者 第i天买入（第i-2天卖出的利润减去今天买入的价格）
+            dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1]+prices[i]);
+            // 第一次买不用考虑冻结期
             dp[i][1] = Math.max(dp[i-1][1], i>=2 ? dp[i-2][0]-prices[i] : dp[i-1][0]-prices[i]);
         }
         return dp[len-1][0];
