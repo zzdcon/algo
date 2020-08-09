@@ -1,4 +1,5 @@
-package algo.leetcode.tree;//给定一个二叉树，原地将它展开为链表。
+package algo.leetcode.tree;
+//给定一个二叉树，原地将它展开为链表。
 //
 // 例如，给定二叉树 
 //

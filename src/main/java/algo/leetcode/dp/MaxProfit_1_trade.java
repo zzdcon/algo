@@ -68,8 +68,11 @@ class MaxProfit_1_trade {
 
 
     public static void main(String[] args) {
-        System.out.println(new MaxProfit_1_trade().maxProfit2(new int[]{7, 1, 5, 3, 6, 4}));
-        System.out.println(new MaxProfit_1_trade().maxProfit2(new int[]{7, 6, 4, 3, 1}));
+//        System.out.println(new MaxProfit_1_trade().maxProfit2(new int[]{7, 1, 5, 3, 6, 4}));
+//        System.out.println(new MaxProfit_1_trade().maxProfit2(new int[]{7, 6, 4, 3, 1}));
+        System.out.println((int)0.1);
+        System.out.println((int)0.5);
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
