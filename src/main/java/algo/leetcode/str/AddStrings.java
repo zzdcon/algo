@@ -36,9 +36,30 @@ class AddStrings {
         return ans.length() == 0 ? "0" : ans;
     }
 
+    /**
+     * 方法二： string 转数组
+     * @param num1
+     * @param num2
+     * @return
+     */
+    public String addStrings2(String num1, String num2) {
+        char[] n1 = num1.toCharArray();
+        char[] n2 = num2.toCharArray();
+        int i= n1.length-1, j= n2.length -1, carry = 0;
+        String ans = "";
+        while (i>=0 || j>=0 || carry>0) {
+            int x = i>=0? n1[i--]-'0' : 0;
+            int y = j>=0? n2[j--]-'0' : 0;
+            int sum = x+y+carry;
+            carry = sum/10;
+            ans = sum%10 + ans;
+        }
+        return ans;
+    }
+
+
     public static void main(String[] args) {
-        System.out.println(new AddStrings().addStrings("0", "0"));
-        System.out.println(new AddStrings().addStrings("1", "1"));
+        System.out.println(new AddStrings().addStrings2("123", "456"));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
