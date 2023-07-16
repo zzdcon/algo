@@ -23,8 +23,11 @@ package algo.leetcode.linkedList;
 //leetcode submit region begin(Prohibit modification and deletion)
 
 import algo.dataStructure.ListNode;
+import algo.dataStructure.TreeNode;
 import algo.tools.ListNodeBuilder;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -74,7 +77,14 @@ class AddTwoNumbers {
 
     public static void main(String[] args) {
 //        System.out.println(new AddTwoNumbers().addTwoNumbers(ListNodeBuilder.build(new int[]{7,2,4,3}), ListNodeBuilder.build(new int[]{5,6,4})));
-        System.out.println(new AddTwoNumbers().addTwoNumbers(ListNodeBuilder.build(new int[]{3,9,9,9,9,9,9,9,9,9}), ListNodeBuilder.build(new int[]{7})));
+//        System.out.println(new AddTwoNumbers().addTwoNumbers(ListNodeBuilder.build(new int[]{3,9,9,9,9,9,9,9,9,9}), ListNodeBuilder.build(new int[]{7})));
+//
+//        Queue<TreeNode> queue = new LinkedList<>();//通过队列实现bfs
+//        queue.poll();
+        int i = 1;
+        System.out.println(i<<1);
+        System.out.println(i<<1|1);
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
